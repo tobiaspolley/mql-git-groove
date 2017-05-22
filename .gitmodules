@@ -1,0 +1,4 @@
+[submodule "doc"]
+	path = doc
+	url = https://github.com/tobiaspolley/mql-git-groove.wiki.git
+	branch = master

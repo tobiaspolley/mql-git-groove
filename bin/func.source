@@ -1,0 +1,307 @@
+### func.source
+# This file provides functions and variables for other Scripts.
+# Do not edit
+
+#####################
+### include project.info
+source project.info
+
+#####################
+### functions ###
+#####################
+
+#####################
+### AddIgnoredFiles
+function AddIgnoredFiles()
+{
+  ### git add -f *.ex4
+  echo "Add .ex4 files to next commit"
+  list=( $(find ../src/ -type f | grep .ex4) )
+  DEBUG ${#list[@]}
+  DEBUG ${list[@]}
+  git add -f ${list[@]}
+}
+
+#####################
+### DEBUG
+#debug="false"
+function DEBUG()
+{
+  if [ $debug == "true" ]; then
+    echo "$1"
+  fi
+}
+
+#####################
+### PrintDone
+function PrintDone()
+{
+  echo "*** done ***"
+  echo ""
+}
+
+#####################
+### CheckOnBranch
+function CheckOnBranch()
+{
+  local branch_name=$( git symbolic-ref --short -q HEAD )
+  local tmp=${branch_name#$1}
+  DEBUG ${tmp[@]}
+  if [[ "$branch_name" == "$tmp" ]]; then
+    DEBUG "not on '$1'"
+    return 1
+  else
+    return 0
+  fi
+}
+
+#####################
+### CheckGitStatus
+function CheckGitStatus()
+{
+  echo "Checking 'git status'"
+  if [[ `git status --porcelain` ]]; then
+    ### changes
+    echo "...Working directory is not clean"
+    echo "Abort..."
+    return 1
+  else
+    ### no changes
+    echo "...Working directory is clean"
+    return 0
+  fi
+}
+
+#####################
+### CheckUpstream
+function CheckUpstream()
+{
+  echo "Check upstream"
+  local curr_branch=$(git rev-parse --abbrev-ref HEAD)
+  local curr_remote=$(git config branch.$curr_branch.remote)
+  if [[ ! $curr_remote ]]; then
+    echo "...No upstream for '$curr_branch'"
+    return 0
+  fi
+  #
+  local LOCAL=$(git rev-parse @)
+  local REMOTE=$(git rev-parse @{u})
+  local BASE=$(git merge-base @ @{u})
+  #
+  if [[ $LOCAL == $REMOTE ]]; then
+      echo "...Up-to-date"
+  elif [[ $LOCAL == $BASE ]]; then
+      echo "...Need to pull"
+      echo "Abort..."
+      return 1
+  elif [[ $REMOTE == $BASE ]]; then
+      echo "...Need to push"
+  else
+    echo "...Local branch is diverged from upstream"
+    echo "Abort..."
+    return 1
+  fi
+  return 0
+}
+
+#####################
+### UpdateProjectInfo
+function UpdateProjectInfo()
+{
+  source project.info
+  #
+  echo "Update version number in bin/project.info to $1"
+  local str_find="project_version"
+  DEBUG "str_find = $str_find"
+  local str_replace="project_version=\"$1\""
+  DEBUG "str_replace = $str_replace"
+  sed -i "/^$str_find/c\\$str_replace" ./project.info
+  if [ $? -ne 0 ]; then
+    echo "Failed to update 'project.info'"
+    echo "Abort..."
+    return 1
+  fi
+  echo ""
+  return 0
+}
+
+#####################
+### UpdateFilenames
+function UpdateFilenames()
+{
+  source project.info
+  #
+  echo "Update filenames:"
+  local list=( $(find ../src/ -type f | grep .mq4 | grep -v sub/) )
+  DEBUG ${#list[@]}
+  DEBUG ${list[@]}
+  #
+  for i in "${list[@]}" ; do
+    DEBUG $i
+    local str=${i#../}
+    echo "rename $str"
+    str=${str%.mq4}
+    str=${str%_$version_prefix*}
+    if [[ $1 == "--plain" ]]; then
+      echo "to     ${str}.mq4"
+      git mv "$i" "../${str}.mq4"
+    else
+      echo "to     ${str}_${version_prefix}${project_version}.mq4"
+      git mv "$i" "../${str}_${version_prefix}${project_version}.mq4"
+    fi
+  done
+  #
+  local list=( $(find ../src/ -type f | grep .ex4 | grep -v sub/) )
+  DEBUG ${#list[@]}
+  DEBUG ${list[@]}
+  #
+  for i in "${list[@]}" ; do
+    DEBUG $i
+    str=${i#../}
+    echo "rename $str"
+    str=${str%.ex4}
+    str=${str%_$version_prefix*}
+    if [[ $1 == "--plain" ]]; then
+      echo "to     ${str}.ex4"
+      git mv "$i" "../${str}.ex4"
+    else
+      echo "to     ${str}_${version_prefix}${project_version}.ex4"
+      git mv "$i" "../${str}_${version_prefix}${project_version}.ex4"
+    fi
+  done
+  echo ""
+}
+
+#####################
+### UpdateFileVersion
+function UpdateFileVersion()
+{
+  source project.info
+  #
+  echo "Update version number in src/ files:"
+  local str_find="#property version"
+  DEBUG "str_find = $str_find"
+  local str_replace="#property version   \"$version_prefix$project_version\""
+  DEBUG "str_replace = $str_replace"
+  local list=( $(find ../src/ -type f | grep -v ex4 | grep -v sub/) )
+  DEBUG ${#list[@]}
+  DEBUG ${list[@]}
+  #
+  for i in "${list[@]}" ; do
+    echo "Update version number to $project_version in ${i#../}"
+    sed -i "/^$str_find/c\\$str_replace" $i
+    if [ $? -ne 0 ]; then
+      echo "Failed to update version number in ${i#../}"
+      echo "Abort..."
+      exit 1
+    fi
+  done
+  echo ""
+}
+
+#####################
+### ShowProjectInfo
+function ShowProjectInfo()
+{
+  source project.info
+  #
+  echo ""
+  echo "### Project Info ###"
+  echo "#"
+  echo "# Project:  $project_name"
+  echo "# Version:  $project_version"
+  echo "# Release:  $release_date"
+  echo "# Type:     $project_type"
+  echo "# Author:   $author_name"
+  echo "# Email:    $author_email"
+  echo "#"
+  echo ""
+}
+
+#####################
+### DeleteReleaseFiles
+function DeleteReleaseFiles()
+{
+  echo "Remove release specific files:"
+  if [ -f ../CHANGELOG ]; then
+    rm -v ../CHANGELOG
+  fi
+  if [ -f ../LICENCE ]; then
+    rm -v ../LICENCE
+  fi
+  if [ -f ../README ]; then
+    rm -v ../README
+  fi
+  if [ -f ../*.gz ]; then
+    rm -v ../*.gz
+  fi
+  echo ""
+}
+
+#####################
+### GenerateReleaseFiles
+function GenerateReleaseFiles()
+{
+  source project.info
+  #
+  echo "Create CHANGELOG and README"
+  ### create changelog
+  git log > ../CHANGELOG
+  ### create readme
+  local readme_filename="README"
+  echo -e "project:\t$project_name" > ../$readme_filename
+  echo -e "type:\t\t$project_type" >> ../$readme_filename
+  echo -e "version:\t$project_version" >> ../$readme_filename
+  echo -e "release:\t$release_date" >> ../$readme_filename
+  echo -e "author:\t\t$author_name" >> ../$readme_filename
+  echo -e "email:\t\t$author_email" >> ../$readme_filename
+  echo -e "\n""sha1sum:" >> ../$readme_filename
+  ### sha1sum
+  local tmp=$PWD
+  cd ..
+  local list=( $(find ./ -type f | sort -d | grep -v .git | grep -v $readme_filename | grep -v bin/) )
+  DEBUG ${#list[@]}
+  DEBUG ${list[@]}
+  for i in "${list[@]}" ; do
+    DEBUG $i
+    local str=${i##"./"}
+    DEBUG $str
+    sha1sum "$str"  >> $readme_filename
+  done
+  cd "$tmp"
+}
+
+#####################
+### GenerateArchive
+function GenerateArchive()
+{
+  echo "Create tarball archive ${project_name}_${version_prefix}${project_version}.tar.gz"
+  local tmp=${PWD}
+  cd ..
+  git archive --prefix=${project_name}_${version_prefix}${project_version}/ -o ${project_name}_${version_prefix}${project_version}.tar.gz HEAD
+  ### add to archive
+  tar xzf ${project_name}_${version_prefix}${project_version}.tar.gz
+  rm ${project_name}_${version_prefix}${project_version}.tar.gz
+  if [ -f "${project_name}_${version_prefix}${project_version}/.gitignore" ]; then
+    rm ${project_name}_${version_prefix}${project_version}/.gitignore
+  fi
+  if [ -f "${project_name}_${version_prefix}${project_version}/.gitmodules" ]; then
+    rm ${project_name}_${version_prefix}${project_version}/.gitmodules
+  fi
+  if [ -d "${project_name}_${version_prefix}${project_version}/bin" ]; then
+    rm -r ${project_name}_${version_prefix}${project_version}/bin
+  fi
+  if [ -f CHANGELOG ]; then
+    cp CHANGELOG ${project_name}_${version_prefix}${project_version}/
+  fi
+  if [ -f LICENSE ]; then
+    cp LICENSE ${project_name}_${version_prefix}${project_version}/
+  fi
+  if [ -f README ]; then
+    cp README ${project_name}_${version_prefix}${project_version}/
+  fi
+  tar czf ${project_name}_${version_prefix}${project_version}.tar.gz ${project_name}_${version_prefix}${project_version}
+  rm -r ${project_name}_${version_prefix}${project_version}
+  cd "$tmp"
+  echo ""
+}

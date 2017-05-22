@@ -1,0 +1,22 @@
+### project.info
+# This file contains basic information about the project.
+# Edit only once upon project initialisation.
+
+### Choose author credentials
+author_name="Tobias Polley"
+author_email="tobias_polley@web.de"
+
+### Choose project name and type
+project_name="mql-git-groove"
+#project_type="expert"
+#project_type="include"
+#project_type="indicator"
+#project_type="library"
+#project_type="script"
+project_type="other"
+
+### Leave version and date unchanged.
+version_prefix="v"
+project_version="0.0.0"
+release_date=`date +%Y-%m-%d`
+date_in_tagsnames="false"
