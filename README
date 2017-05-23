@@ -1,0 +1,46 @@
+project:	mql-git-groove
+type:		other
+version:	0.1.0-rc0
+release:	2017-05-23
+author:		Tobias Polley
+email:		tobias_polley@web.de
+
+sha1sum:
+5605c80e5bb1f92a8bce15410068615d768b2757  CHANGELOG
+69bea5090a2f961ecd37b17e9a82007552dd3338  doc/a-proposed-folder-structure-for-mql-development.md
+81328e9197d4542d64628b30603aeadaecd68739  doc/branch-structure.md
+1fb3d3a17b8c4e0509e523f6b58048d05f5ec6c7  doc/folder-evolution-00-develop.md
+73e0cb8cca4cee5fd118b5f715305d76c50ad533  doc/folder-evolution-01-develop.md
+2fe3eeb2353ce752b42f9cfc3295ad3ee1437f35  doc/folder-evolution-01-release.md
+718dfdeafa614bdc27abbe5cc2cf8691db50d174  doc/folder-evolution-02-develop.md
+4cab14b6bc35d687a15ede89a0b87f8952585db8  doc/folder-evolution-02-release.md
+5f78128d5494ee1a7374151e9f17e443d04c7465  doc/folder-evolution-03-develop.md
+1f8e53810cd53576b3daf6606841e600124d87e1  doc/folder-evolution-03-release.md
+6eb185d794448c888ce341390f46e30a7edbac9e  doc/folder-evolution-04-develop.md
+2b09b819f58963716714263d09cf000ac28d5ac9  doc/folder-evolution-04-release.md
+b7e1c003291bc8fcd91e67de538c89dc138ac3f9  doc/folder-evolution-05-develop.md
+3e292c806adc03db0ef41e01d2f7024c66a39286  doc/folder-evolution-05-master.md
+a2f40375fe29cf074afea1e6da75e40632defff2  doc/folder-evolution-05-release.md
+967715ee5e4c96cdf007302ce86f7add140abfe2  doc/folder-evolution-06-develop.md
+8cf80c8eb58caa7cad66f1100fa8de2a3ce0c63e  doc/folder-evolution-06-hotfix.md
+5786a148c9b46c275183806b8f602b8b5f40f3f2  doc/folder-evolution-06-master.md
+8294e2ff051a983e9ac2ee6ae29f0095b8f4a029  doc/folder-evolution-06-release.md
+9be656bd353fc121b692327c2e089fd9139bb1be  doc/folder-evolution-07-develop.md
+97dd7c57629b8b7e58ce9ccbee0b955fa2f158d4  doc/folder-evolution-07-hotfix.md
+54ef38bce3136f6edc9195109abb3bee985227fa  doc/folder-evolution-07-master.md
+753ef4379fcc5d38537b9f45c54386080e1abcb4  doc/folder-evolution-07-release.md
+c18720fcc158d1ac0be876df40150487510666fa  doc/home.md
+9a85035c9f478952220778e20add5a5fcaa246e7  doc/_Sidebar.md
+e72b9f01cc09543c4f8209395c24f128f70bac2f  LICENSE.md
+23bb1aded4caa4b5f5099656ecc0c744c7fb25ff  src/expert_v0.1.0-rc0.ex4
+8d459af2507442f3e84fbd77b5c65e7b949706c1  src/expert_v0.1.0-rc0.mq4
+f31ecce5f9ff3f634eef9aa645b5757fe1d90b68  src/inc/include.mqh
+9b8e3281da4602e1f1ad81f003d817a488c03b67  src/indicator_v0.1.0-rc0.ex4
+0a242cba66d070059c353dfefc5f5956a95f1f8d  src/indicator_v0.1.0-rc0.mq4
+15b89a499c76ee52319489c608d78ccacf874708  src/lib/library_v0.1.0-rc0.ex4
+f1adf7aa4f8546e45614bbaf8c14c31c12a00e42  src/lib/library_v0.1.0-rc0.mq4
+e0d65265b10d50ed59b22675e6108360499cf224  src/script_v0.1.0-rc0.ex4
+0b62cc4ea0a1e29448432e16e3765fa18d4b4829  src/script_v0.1.0-rc0.mq4
+8002161c9333df3259896e43bcebc0bc9a795797  src/sub/inc/submodule/inc/submodule_include.mqh
+33f6110292f9c0b0603be03d52222c164e6c6b80  src/sub/lib/submodule/lib/submodule_library.ex4
+33f6110292f9c0b0603be03d52222c164e6c6b80  src/sub/lib/submodule/lib/submodule_library.mq4

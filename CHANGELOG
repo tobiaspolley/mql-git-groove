@@ -1,0 +1,31 @@
+commit d4a94e494f0a17796070a6a1da73970cd261e46c
+Author: Tobias Polley <tobias_polley@web.de>
+Date:   Tue May 23 14:52:07 2017 +0200
+
+    START RC 0.1.0-rc0
+    
+    - update 'project.info' to 0.1.0-rc0
+    - update version numbers in all project files
+    - rename immediate source files to match version number
+    - rename src/*.ex4 files to match version number
+
+commit cdaf34a58304a21b1cc1ccb81e7c892abffdae59
+Author: Tobias Polley <tobias_polley@web.de>
+Date:   Tue May 23 14:52:07 2017 +0200
+
+    MOVE TO NEW BASE 0.1.0
+    
+    - update 'project.info' to 0.1.0-dev
+    - update version numbers in all project files
+
+commit 0e6ba774137e02d0fa083100914181f231db83ba
+Author: Tobias Polley <tobias_polley@web.de>
+Date:   Mon May 22 20:13:15 2017 +0200
+
+    *** FULL IMPLEMENTATION ***
+
+commit 91f2e0f5d1da2279061933739ed0f746a3056cb8
+Author: Tobias Polley <tobias_polley@web.de>
+Date:   Sun Apr 23 12:12:39 2017 +0200
+
+    Initial commit
