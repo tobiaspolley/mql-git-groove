@@ -17,6 +17,6 @@ project_type="other"
 
 ### Leave version and date unchanged.
 version_prefix="v"
-project_version="0.0.0"
+project_version="0.1.0-dev"
 release_date=`date +%Y-%m-%d`
 date_in_tagsnames="false"
