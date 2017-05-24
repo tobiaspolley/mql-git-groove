@@ -123,16 +123,8 @@ AddIgnoredFiles
 
 #####################
 ### generate release specific files
-GenerateReleaseFiles
-if [ -f ../CHANGELOG ]; then
-  git add ../CHANGELOG
-fi
-if [ -f ../LICENCE ]; then
-  git add ../LICENCE
-fi
-if [ -f ../README ]; then
-  git add ../README
-fi
+GenerateChangelog
+GenerateReadme
 
 #####################
 ### archive

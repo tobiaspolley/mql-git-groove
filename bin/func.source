@@ -239,14 +239,22 @@ function DeleteReleaseFiles()
 }
 
 #####################
-### GenerateReleaseFiles
-function GenerateReleaseFiles()
+### GenerateChangelog
+function GenerateChangelog()
+{
+  echo "Create CHANGELOG"
+  ### create changelog
+  git log > ../CHANGELOG
+  git add ../CHANGELOG
+}
+
+#####################
+### GenerateReadme
+function GenerateReadme()
 {
   source project.info
   #
-  echo "Create CHANGELOG and README"
-  ### create changelog
-  git log > ../CHANGELOG
+  echo "Create README"
   ### create readme
   local readme_filename="README"
   echo -e "project:\t$project_name" > ../$readme_filename
@@ -269,6 +277,7 @@ function GenerateReleaseFiles()
     sha1sum "$str"  >> $readme_filename
   done
   cd "$tmp"
+  git add ../README
 }
 
 #####################
