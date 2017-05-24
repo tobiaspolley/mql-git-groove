@@ -155,7 +155,7 @@ msg="NEW RELEASE ${project_version}
 - rename immediate source files to match version number
 - rename src/*.ex4 files to match version number
 - add src/*.ex4 to git
-- generate CHANGELOG ($generate_chagelog)
+- generate CHANGELOG ($generate_changelog)
 - generate README ($generate_readme)
 - generate tarball ($generate_archive)
 "

@@ -239,7 +239,7 @@ function DeleteReleaseFiles()
 ### GenerateChangelog
 function GenerateChangelog()
 {
-  if [[ $generate_chagelog != "true" ]]; then
+  if [[ $generate_changelog != "true" ]]; then
     return 0
   fi
   #

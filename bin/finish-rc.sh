@@ -113,7 +113,7 @@ echo "Create new commit: FINISH RC ${project_version}"
 msg="FINISH RC ${project_version}
 
 - add src/*.ex4 to git
-- generate CHANGELOG ($generate_chagelog)
+- generate CHANGELOG ($generate_changelog)
 - generate README ($generate_readme)
 - generate tarball ($generate_archive)
 "

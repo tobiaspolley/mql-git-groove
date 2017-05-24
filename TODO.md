@@ -20,11 +20,10 @@
 
 + Better README file (as markdown) pointing to resources:
 
-  - wiki
-  - latest release
-  - release notes
-  - install
-  - lincense
+  + Wiki
+  + Latest release
+  + How to set up
+  + How to use
 
 
 + Function GenerateReleaseFiles() is split up into two independent functions:
