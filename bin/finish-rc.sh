@@ -113,11 +113,12 @@ echo "Create new commit: FINISH RC ${project_version}"
 msg="FINISH RC ${project_version}
 
 - add src/*.ex4 to git
-- generate release specific files
-- generate tarball archive
+- generate CHANGELOG ($generate_chagelog)
+- generate README ($generate_readme)
+- generate tarball ($generate_archive)
 "
 git add -A
-git commit -m "$msg"
+git commit --allow-empty -m "$msg"
 if [ $? -ne 0 ]; then
   echo "Failed to create new commit"
   echo "Abort..."

@@ -140,11 +140,12 @@ msg="FINISH HOTFIX ${project_version}-hotfix
 - rename immediate source files to match version number
 - rename src/*.ex4 files to match version number
 - add src/*.ex4 to git
-- generate release specific files
-- generate tarball archive
+- generate CHANGELOG ($generate_chagelog)
+- generate README ($generate_readme)
+- generate tarball ($generate_archive)
 "
 git add -A
-git commit -m "$msg"
+git commit --allow-empty -m "$msg"
 if [ $? -ne 0 ]; then
   echo "Failed to create new commit"
   echo "Abort..."
