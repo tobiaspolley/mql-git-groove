@@ -37,16 +37,17 @@
   + `generate_chagelog="[true|false]"`:
     Creates CHANGELOG from 'git log' [true|false].
     Using GitHub makes CHANGELOG somewhat redundant, so it must be explicitly enabled.
+    Useful when not using GitHub.
 
   + `generate_readme="[true|false]"`:
-    Creates a README file with project information and a table of content with checksums.
+    Creates a README file containing project information and a table of content with checksums.
     Using GitHub asks for a better README, so it must be explicitly enabled.
-    Enable when not using GitHub.
+    Useful when not using GitHub.
 
   + `generate_archive="[true|false]"`:
     Create a tarball of the project [true|false].
-    Feature is redundant to GitHub functionality, so it can be disabled.
-    Enable when not using GitHub.
+    As this feature is redundant to GitHub functionality, it must be explicitly enabled.
+    Useful when not using GitHub.
 
 + Drop submodule _'doc'_. Assuming the best place to look for information is always the current wiki. This is linked to in the README.
 
