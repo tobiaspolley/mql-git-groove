@@ -5,8 +5,8 @@
 # New features
 
 - better projects.info
-  - tarball as option
-  - CHANGELOG, README as option
+  + tarball as option
+  + CHANGELOG, README as option
   - property link
   - property copyright
 - update property link in all src/ files w/o sub/
@@ -16,7 +16,7 @@
   - wiki
   - install
   - trading.tobiaspolley.com
-- exclude doc/
++ exclude doc/
 
 # Fixed bugs
 

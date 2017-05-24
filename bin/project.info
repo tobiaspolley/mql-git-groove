@@ -24,3 +24,4 @@ release_date=`date +%Y-%m-%d`
 date_in_tagsnames="false"
 generate_chagelog="true"
 generate_readme="true"
+generate_archive="true"

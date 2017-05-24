@@ -289,6 +289,10 @@ function GenerateReadme()
 ### GenerateArchive
 function GenerateArchive()
 {
+  if [[ $generate_archive != "true" ]]; then
+    return 0
+  fi
+  #
   echo "Create tarball archive ${project_name}_${version_prefix}${project_version}.tar.gz"
   local tmp=${PWD}
   cd ..
