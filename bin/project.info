@@ -19,4 +19,7 @@ project_type="other"
 version_prefix="v"
 project_version="0.1.0-dev"
 release_date=`date +%Y-%m-%d`
+
+### other options
 date_in_tagsnames="false"
+generate_chagelog="true"

@@ -239,6 +239,10 @@ function DeleteReleaseFiles()
 ### GenerateChangelog
 function GenerateChangelog()
 {
+  if [[ $generate_chagelog != "true" ]]; then
+    return 0
+  fi
+  #
   echo "Create CHANGELOG"
   ### create changelog
   git log > ../CHANGELOG
