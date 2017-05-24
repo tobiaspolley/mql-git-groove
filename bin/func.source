@@ -226,9 +226,6 @@ function DeleteReleaseFiles()
   if [ -f ../CHANGELOG ]; then
     rm -v ../CHANGELOG
   fi
-  if [ -f ../LICENCE ]; then
-    rm -v ../LICENCE
-  fi
   if [ -f ../README ]; then
     rm -v ../README
   fi
