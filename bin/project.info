@@ -22,6 +22,6 @@ release_date=`date +%Y-%m-%d`
 
 ### other options
 date_in_tagsnames="false"
-generate_chagelog="true"
-generate_readme="true"
-generate_archive="true"
+generate_chagelog="false"
+generate_readme="false"
+generate_archive="false"
