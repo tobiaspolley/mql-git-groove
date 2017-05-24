@@ -253,6 +253,10 @@ function GenerateChangelog()
 ### GenerateReadme
 function GenerateReadme()
 {
+  if [[ $generate_readme != "true" ]]; then
+    return 0
+  fi
+  #
   source project.info
   #
   echo "Create README"
