@@ -5,7 +5,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Tobias Polley"
 #property link      "http://trading.tobiaspolley.com"
-#property version   "v0.2.0-dev"
+#property version   "v0.2.0-rc0"
 #property strict
 #property indicator_chart_window
 
